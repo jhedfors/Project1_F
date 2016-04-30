@@ -49,9 +49,6 @@ $(document).ready(function() {
             </select>
           </div>
 
-
-
-          <!-- <input type="text" name="status" value="
           <?php echo $appointment['status'] ?>
           "> -->
          <label for="date">Date</label><input type="date" name="date" value="<?php echo date("Y-m-d",strtotime($appointment['date_time'])) ?>">
@@ -61,7 +58,19 @@ $(document).ready(function() {
        </form>
 
      </div>
+   </form>
 
+
+   </div>
+   <div class="errors">
+     <?php
+     $errors =$this->session->userdata('errors');
+
+     foreach ($errors as $error) {
+       echo $error;
+     }
+     $this->session->set_userdata('errors',[validation_errors()]);
+      ?>
    </div>
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

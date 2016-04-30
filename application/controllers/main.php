@@ -20,10 +20,19 @@ class Main extends CI_Controller {
 			'password_chk'=>function($post_data){$this->form_validation->set_rules("password_chk", "Password", "trim|required||callback_check_credentials");},
 			'confirm_pw'=>function($post_data){$this->form_validation->set_rules("confirm_pw", "Confirmed Password", "trim|required|matches[password]");},
 			'dob'=>function($post_data){$this->form_validation->set_rules("dob", "Date of Birth", "trim|required");},
+			'date'=>function($post_data){$this->form_validation->set_rules("date", "Date", "trim|required");},
+			'time'=>function($post_data){$this->form_validation->set_rules(";time", "Time", "trim|required");},
+			'task'=>function($post_data){$this->form_validation->set_rules("task", "Task", "trim|required");},
+			'status'=>function($post_data){$this->form_validation->set_rules("status", "Status", "trim|required");},
 			];
 		foreach (array_keys($this->input->post()) as $key) {
-			$routing[$key]($this->input->post($key));
+
+			if ($key != null) {
+				$routing[$key]($this->input->post($key));
+			}
+
 		}
+
 }
 	public function login(){
 		$this->validation();
@@ -46,7 +55,7 @@ class Main extends CI_Controller {
 			if($this->main_model->register($post) ){
 				$record = $this->main_model->show_by_email($post['email_pk']);
 				$this->session->set_userdata('active_id' ,$record['id']);
-				$this->session->set_userdata('alias' ,$record['first_name']);
+				$this->session->set_userdata('first_name' ,$record['first_name']);
 				redirect('appointments');
 			}
 			redirect('unanticipated_error');
@@ -92,14 +101,38 @@ class Main extends CI_Controller {
 	}
 
 	public function add(){
-		$post = $this->input->post();
-		$this->main_model->add($post);
-		redirect('appointments');
+		$this->form_validation->set_rules("date", "Date", "trim|required");
+		$this->form_validation->set_rules("time", "Time", "trim|required");
+		$this->form_validation->set_rules("task", "Task", "trim|required");
+		if($this->form_validation->run() === FALSE)		{
+			// die(106);
+			$this->session->set_userdata('errors',[validation_errors()]);
+			redirect('/main/appointments_view');
+		}
+		else {
+			$post = $this->input->post();
+			$this->main_model->add($post);
+			redirect('appointments');
+		}
+
 	}
 	public function modify_form(){
-		$post = $this->input->post();
-		$this->main_model->modify_appointment($post);
-		redirect('appointments');
+		$this->form_validation->set_rules("date", "Date", "trim|required");
+		$this->form_validation->set_rules("time", "Time", "trim|required");
+		$this->form_validation->set_rules("task", "Task", "trim|required");
+		$this->form_validation->set_rules("status", "Status", "trim|required");
+		// $this->validation();
+		if($this->form_validation->run() === FALSE)		{
+			$this->session->set_userdata('errors',[validation_errors()]);
+			$post = $this->input->post();
+			redirect('appointments/'.$post['id']);
+		}
+		else {
+			$post = $this->input->post();
+			$this->main_model->modify_appointment($post);
+			redirect('appointments');
+		}
+
 	}
 
 	public function delete($id){

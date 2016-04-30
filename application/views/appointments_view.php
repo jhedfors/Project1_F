@@ -48,34 +48,33 @@
         </thead>
         <tbody>
           <?php
-          foreach ($appointments as $appointment) {
-            $current_date = date("Ymd");
-            $appointment_date= date("Ymd", strtotime($appointment['date_time']));
+          if (isset($appointments)) {
 
-            // var_dump($appointments);
-            // die();
+              foreach ($appointments as $appointment) {
+                $current_date = date("Ymd");
+                $appointment_date= date("Ymd", strtotime($appointment['date_time']));
 
-            if(($current_date-1) == $appointment_date) {
-                // echo date("Y M d",strtotime($appointment['date_time']));
-                // echo date("Y M, d");
-                // die();
-          ?>
-          <tr>
-            <td>
-              <?php echo $appointment['task'] ?>
-            </td>
-            <td>
-              <?php echo date("h:i",strtotime($appointment['date_time'])) ?>
-            </td>
-            <td>
-              <?php echo $appointment['status'] ?>
-            </td>
-            <td>
-              <a href="/appointments/<?php echo $appointment['appointment_id'] ?>">Edit</a>  <a href="delete/<?php echo $appointment['appointment_id'] ?>">Delete</a>
-            </td>
-          </tr>
-          <?php
-            }
+                if(($current_date) == $appointment_date) {
+
+              ?>
+              <tr>
+                <td>
+                  <?php echo $appointment['task'] ?>
+                </td>
+                <td>
+                  <?php echo date("h:i",strtotime($appointment['date_time'])) ?>
+                </td>
+                <td>
+                  <?php echo $appointment['status'] ?>
+                </td>
+                <td>
+                  <a href="/appointments/<?php echo $appointment['appointment_id'] ?>">Edit</a>  <a href="delete/<?php echo $appointment['appointment_id'] ?>">Delete</a>
+                </td>
+              </tr>
+              <?php
+                }
+              }
+
           }
           ?>
         </tbody>
@@ -100,7 +99,7 @@
           foreach ($appointments as $appointment) {
             $current_date = date("Ymd");
             $appointment_date= date("Ymd", strtotime($appointment['date_time']));
-            if(($current_date-1) !== $appointment_date+1  ) {
+            if(($current_date) !== $appointment_date  ) {
           ?>
           <tr>
             <td>
@@ -130,18 +129,21 @@
           <label for="task">Tasks:</label><input type="text" name="task" value="">
           <input type="submit">
         </form>
+        <div class="errors">
+          <?php
+          $errors =$this->session->userdata('errors');
+
+          foreach ($errors as $error) {
+            echo $error;
+          }
+          $this->session->set_userdata('errors',[validation_errors()]);
+           ?>
+        </div>
       </div>
 
     </div>
 
   </div>
-   <div class="row">
-     <div class="col s12">
-       <div class="errors">
-         <?php echo validation_errors() ?>
-       </div>
-     </div>
-   </div>
 
 
   <!--  Scripts-->
