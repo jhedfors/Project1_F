@@ -96,6 +96,7 @@
         </thead>
         <tbody>
           <?php
+        if (isset($appointments)) {
           foreach ($appointments as $appointment) {
             $current_date = date("Ymd");
             $appointment_date= date("Ymd", strtotime($appointment['date_time']));
@@ -113,6 +114,7 @@
             </td>
           </tr>
           <?php
+              }
             }
           } ?>
         </tbody>
