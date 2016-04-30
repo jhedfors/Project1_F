@@ -134,9 +134,10 @@
         <div class="errors">
           <?php
           $errors =$this->session->userdata('errors');
-
-          foreach ($errors as $error) {
-            echo $error;
+          if($errors){
+            foreach ($errors as $error) {
+              echo $error;
+            }
           }
           $this->session->set_userdata('errors',[validation_errors()]);
            ?>
