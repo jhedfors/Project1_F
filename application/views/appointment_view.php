@@ -11,7 +11,6 @@
 </head>
 <body>
   <script type="text/javascript">
-
 $(document).ready(function() {
   $('select').material_select();
 });
@@ -21,7 +20,6 @@ $(document).ready(function() {
       <div class="col s4 left" >
         <h4 class = "left">What's Up</h4>
       </div>
-
       <div class="col s4 right">
         <a href="/appointments">Home</a> | <a href="/logout">Logout</a>
 </div>
@@ -45,27 +43,19 @@ $(document).ready(function() {
               <option value = "Pending">Pending</option>
               <option value = "Missed">Missed</option>
               <option value="<?php echo $appointment['status'] ?>" selected><?php echo $appointment['status'] ?></option>
-
             </select>
           </div>
-
-          <?php echo $appointment['status'] ?>
-          "> -->
          <label for="date">Date</label><input type="date" name="date" value="<?php echo date("Y-m-d",strtotime($appointment['date_time'])) ?>">
          <label for="time">Time</label><input type="time" name="time" value="<?php echo date("h:i",strtotime($appointment['date_time'])) ?>">
          <input type="hidden" name="id" value="<?php echo $appointment['id'] ?>">
          <input type="submit">
        </form>
-
      </div>
    </form>
-
-
    </div>
    <div class="errors">
      <?php
      $errors =$this->session->userdata('errors');
-
      foreach ($errors as $error) {
        echo $error;
      }
