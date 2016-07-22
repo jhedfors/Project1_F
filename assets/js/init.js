@@ -1,7 +1,24 @@
-(function($){
-  $(function(){
+$(document).ready(function(){
+  // $('#modal1').openModal();
 
-    $('.button-collapse').sideNav();
+  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('.modal-trigger').leanModal();
+  $('.button-collapse').sideNav();
 
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
+//   $( "form" ).submit(function( event ) {
+//   event.preventDefault();
+// });
+
+});
+
+
+
+// (function($){
+//   $(function(){
+//
+//     $('.button-collapse').sideNav();
+//     $('.modal-trigger').leanModal();
+//
+//
+//   }); // end of document ready
+// })(jQuery); // end of jQuery name space

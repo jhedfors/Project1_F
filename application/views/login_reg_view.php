@@ -11,11 +11,11 @@
 </head>
 <body>
   <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper container">
       <h4 class = "left">What's Up</h4>
    </div>
-  </nav>
-   <div class="row">
+ </nav>
+   <div class="row container">
      <div class="col s12">
        <div class="errors">
          <?php echo validation_errors() ?>
@@ -23,11 +23,10 @@
      </div>
    </div>
 
-   <div class="row">
+   <div class="row container">
      <div class="col s6">
-
        <h4>Register</h4>
-       <form class="" action="/main/register" method="post">
+       <form class="" action="/users/register" method="post">
          <label for="name">Name:</label><input type="text" name="name" value="">
         <label for="email_pk">Email:</label><input type="email" name="email_pk" value="">
          <label for="password">Password:</label><input type="password" name="password" value="">
@@ -36,16 +35,31 @@
          </p>
          <label for="confirm_pw">Confirm PW:</label><input type="password" name="confirm_pw" value="">
          <label for="dob">Date of Birth:</label><input type="date" name="dob" value="">
-         <input type="submit" value="Register">
+         <input class="btn" type="submit" value="Register">
        </form>
      </div>
      <div class="col s6">
        <h4>Login</h4>
-       <form class="" action="/main/login" method="post">
+       <form class="" action="/users/login" method="post">
          <label for="email">Email:</label><input type="email" name="email">
          <label for="password_chk">Password:</label><input type="password" name="password_chk">
-         <input type="submit"value="Login">
+         <input class="btn"  type="submit"value="Login">
        </form>
+     </div>
+     <div class="row">
+       <div class="col s12 m6">
+         <div class="card blue-grey darken-1">
+           <div class="card-content white-text">
+             <span class="card-title">Just checking it out?</span>
+             <p>If you prefer not to register, you may use the following credentials:
+               <ul>
+                 <li>Email: guest@user.com</li>
+                 <li>Password: guestuser</li>
+               </ul>
+             </p>
+           </div>
+         </div>
+       </div>
      </div>
    </div>
   <!--  Scripts-->

@@ -1,53 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$route['default_controller'] = "/main";
-$route['main'] = "/main/login_reg_view";
-$route['appointments/(:num)'] = "/main/appointment_view/$1";
-$route['appointments'] = "/main/appointments_view";
-$route['add'] = "/main/add";
-$route['delete/(:num)'] = "/main/delete/$1";
-$route['logout'] = "/main/logout";
+$route['default_controller'] = "/users";
+$route['users'] = "/users/login_reg_view";
+$route['appointments/(:num)'] = "/appointments/appointment_view/$1";
+$route['appointments'] = "/appointments/appointments_view";
+$route['add'] = "/appointments/add";
+$route['delete/(:num)'] = "/appointments/delete/$1";
+$route['done/(:num)'] = "/appointments/mark_complete/$1";
+$route['logout'] = "/users/logout";
 $route['404_override'] = '';
-
-
-/*
-| -------------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------------
-| This file lets you re-map URI requests to specific controller functions.
-|
-| Typically there is a one-to-one relationship between a URL string
-| and its corresponding controller class/method. The segments in a
-| URL normally follow this pattern:
-|
-|	example.com/class/method/id/
-|
-| In some instances, however, you may want to remap this relationship
-| so that a different class/function is called than the one
-| corresponding to the URL.
-|
-| Please see the user guide for complete details:
-|
-|	http://codeigniter.com/user_guide/general/routing.html
-|
-| -------------------------------------------------------------------------
-| RESERVED ROUTES
-| -------------------------------------------------------------------------
-|
-| There area two reserved routes:
-|
-|	$route['default_controller'] = 'welcome';
-|
-| This route indicates which controller class should be loaded if the
-| URI contains no data. In the above example, the "welcome" class
-| would be loaded.
-|
-|	$route['404_override'] = 'errors/page_missing';
-|
-| This route will tell the Router what URI segments to use if those provided
-| in the URL cannot be matched to a valid route.
-|
-*/
-
-/* End of file routes.php */
-/* Location: ./application/config/routes.php */

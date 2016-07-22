@@ -16,39 +16,38 @@ $(document).ready(function() {
 });
   </script>
   <nav>
-    <div class="nav-wrapper">
-      <div class="col s4 left" >
-        <h4 class = "left">What's Up</h4>
-      </div>
-      <div class="col s4 right">
-        <a href="/appointments">Home</a> | <a href="/logout">Logout</a>
-</div>
+    <div class="nav-wrapper container">
+      <h4 class = "left">What's Up</h4>
+      <ul id= "nav" class="right">
+        <li><a href="/appointments">Home</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
    </div>
   </nav>
-   <div class="row">
+  </nav>
+   <div class="row container">
      <div class="col s12">
        <div class="errors">
          <?php echo validation_errors() ?>
        </div>
      </div>
    </div>
-   <div class="row">
+   <div class="row container">
      <div class="col s6">
-       <form class="" action="/main/modify_form" method="post">
+       <form class="" action="/appointments/modify_form" method="post">
           <label for="task">Tasks:</label><input type="text" name="task" value="<?php echo $appointment['task'] ?>">
           <label for="status">Status:</label>
           <div class="">
             <select class="browser-default" name="status" >
-              <option value = "Done">Done</option>
-              <option value = "Pending">Pending</option>
-              <option value = "Missed">Missed</option>
-              <option value="<?php echo $appointment['status'] ?>" selected><?php echo $appointment['status'] ?></option>
+              <option value = "Done" <?php echo($appointment['status'] == "Done" ?  "selected" : "") ?> >Done</option>
+              <option value = "Pending" <?php echo($appointment['status'] == "Pending" ?  "selected" : "") ?>>Pending</option>
+              <option value = "Missed" <?php echo($appointment['status'] == "Missed" ?  "selected" : "") ?>>Missed</option>
             </select>
           </div>
          <label for="date">Date</label><input type="date" name="date" value="<?php echo date("Y-m-d",strtotime($appointment['date_time'])) ?>">
          <label for="time">Time</label><input type="time" name="time" value="<?php echo date("h:i",strtotime($appointment['date_time'])) ?>">
          <input type="hidden" name="id" value="<?php echo $appointment['id'] ?>">
-         <input type="submit">
+         <input class="btn" type="submit">
        </form>
      </div>
    </form>

@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Main extends CI_Controller {
+class Users extends CI_Controller {
 	public function __construct(){
 		parent:: __construct();
-		$this->load->model('main_model');
+		$this->load->model('user_model');
 		$this->load->library('session');
 	}
 	public function index()
@@ -52,8 +52,8 @@ class Main extends CI_Controller {
 		}
 		else{
 			$post = $this->input->post();
-			if($this->main_model->register($post) ){
-				$record = $this->main_model->show_by_email($post['email_pk']);
+			if($this->user_model->register($post) ){
+				$record = $this->user_model->show_by_email($post['email_pk']);
 				$this->session->set_userdata('active_id' ,$record['id']);
 				$this->session->set_userdata('first_name' ,$record['first_name']);
 				redirect('appointments');
@@ -62,7 +62,7 @@ class Main extends CI_Controller {
 		}
 	}
 	public function check_preexisting_email($post_email){
-		$record = $this->main_model->show_by_email($post_email);
+		$record = $this->user_model->show_by_email($post_email);
 		if($record){
 			$this->form_validation->set_message('check_preexisting_email', '%s is already in use');
 			return FALSE;
@@ -74,11 +74,11 @@ class Main extends CI_Controller {
 	public function check_credentials(){
 		$post = $this->input->post();
 		$record;
-		if ($this->main_model->show_by_email($post['email']) == null) {
+		if ($this->user_model->show_by_email($post['email']) == null) {
 			$this->form_validation->set_message('check_credentials', 'Email/Password incorrect');
 			return FALSE;
 		}
-		$record = $this->main_model->show_by_email($post['email']);
+		$record = $this->user_model->show_by_email($post['email']);
 		if($record['password'] != do_hash($post['password_chk'])) {
 			$this->form_validation->set_message('check_credentials', 'Email/Password incorrect');
 			return FALSE;
@@ -88,59 +88,6 @@ class Main extends CI_Controller {
 		$this->session->set_userdata('first_name' ,$record['first_name']);
 		return TRUE;
 	}
-
-	public function appointments_view(){
-		$data = $this->main_model->show_appointments_user();
-		$this->load->view('appointments_view',['appointments'=>$data]);
-
-	}
-	public function appointment_view($id){
-		$data = $this->main_model->show_appointment($id);
-		$this->load->view('appointment_view',['appointment'=>$data]);
-
-	}
-
-	public function add(){
-		$this->form_validation->set_rules("date", "Date", "trim|required");
-		$this->form_validation->set_rules("time", "Time", "trim|required");
-		$this->form_validation->set_rules("task", "Task", "trim|required");
-		if($this->form_validation->run() === FALSE)		{
-			// die(106);
-			$this->session->set_userdata('errors',[validation_errors()]);
-			redirect('/main/appointments_view');
-		}
-		else {
-			$post = $this->input->post();
-			$this->main_model->add($post);
-			redirect('appointments');
-		}
-
-	}
-	public function modify_form(){
-		$this->form_validation->set_rules("date", "Date", "trim|required");
-		$this->form_validation->set_rules("time", "Time", "trim|required");
-		$this->form_validation->set_rules("task", "Task", "trim|required");
-		$this->form_validation->set_rules("status", "Status", "trim|required");
-		// $this->validation();
-		if($this->form_validation->run() === FALSE)		{
-			$this->session->set_userdata('errors',[validation_errors()]);
-			$post = $this->input->post();
-			redirect('appointments/'.$post['id']);
-		}
-		else {
-			$post = $this->input->post();
-			$this->main_model->modify_appointment($post);
-			redirect('appointments');
-		}
-
-	}
-
-	public function delete($id){
-		$this->main_model->delete_appointment($id);
-		redirect('appointments');
-	}
-
-
 	public function logout(){
 		$this->session->sess_destroy();
 		redirect('/');
