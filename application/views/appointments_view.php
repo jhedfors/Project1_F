@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>What's Up</title>
+  <title>Appointments</title>
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -15,7 +15,7 @@
 <body>
   <nav class="teal darken-2">
     <div class="nav-wrapper container">
-      <h4 class = "left">What's Up</h4>
+      <h4 class = "left">Appointments</h4>
       <ul id= "nav" class="right">
         <li><a href="/appointments">Home</a></li>
         <li><a href="/logout">Logout</a></li>
