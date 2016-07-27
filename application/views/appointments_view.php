@@ -13,7 +13,7 @@
   <script src="/assets/js/init.js"></script>
 </head>
 <body>
-  <nav>
+  <nav class="teal darken-2">
     <div class="nav-wrapper container">
       <h4 class = "left">What's Up</h4>
       <ul id= "nav" class="right">

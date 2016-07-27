@@ -10,7 +10,7 @@
   <link href="/assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <nav>
+  <nav class="teal darken-2">
     <div class="nav-wrapper container">
       <h4 class = "left">What's Up</h4>
    </div>
@@ -45,21 +45,6 @@
          <label for="password_chk">Password:</label><input type="password" name="password_chk">
          <input class="btn"  type="submit"value="Login">
        </form>
-     </div>
-     <div class="row">
-       <div class="col s12 m6">
-         <div class="card blue-grey darken-1">
-           <div class="card-content white-text">
-             <span class="card-title">Just checking it out?</span>
-             <p>If you prefer not to register, you may use the following credentials:
-               <ul>
-                 <li>Email: guest@user.com</li>
-                 <li>Password: guestuser</li>
-               </ul>
-             </p>
-           </div>
-         </div>
-       </div>
      </div>
    </div>
   <!--  Scripts-->

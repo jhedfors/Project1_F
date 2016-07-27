@@ -15,7 +15,7 @@ $(document).ready(function() {
   $('select').material_select();
 });
   </script>
-  <nav>
+  <nav class="teal darken-2">
     <div class="nav-wrapper container">
       <h4 class = "left">What's Up</h4>
       <ul id= "nav" class="right">
