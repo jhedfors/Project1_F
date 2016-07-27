@@ -45,7 +45,7 @@ $(document).ready(function() {
             </select>
           </div>
          <label for="date">Date</label><input type="date" name="date" value="<?php echo date("Y-m-d",strtotime($appointment['date_time'])) ?>">
-         <label for="time">Time</label><input type="time" name="time" value="<?php echo date("h:i",strtotime($appointment['date_time'])) ?>">
+         <label for="time">Time</label><input type="time" name="time" value="<?php echo date("H:i",strtotime($appointment['date_time'])) ?>">
          <input type="hidden" name="id" value="<?php echo $appointment['id'] ?>">
          <input class="btn" type="submit">
        </form>
